@@ -6,7 +6,16 @@ const userSchema = new mongoose.Schema({
     },
     age : {
         type : Number
-    }
+    },
+    email : {
+        type : String
+    },
+      password : {
+        type : String
+    },
+      role : {
+        type : String
+    },
 })
 
 module.exports = mongoose.model('users', userSchema)
