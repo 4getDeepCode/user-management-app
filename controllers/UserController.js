@@ -1,6 +1,7 @@
-const e = require("express");
+
 const userModel = require("../models/UserModel.js");
 const { generateHash, verifyHash } = require("./bcrypt.js");
+const { generateToken } = require("./jwt.js");
 
 exports.createUser = async (req, res) => {
   try {
@@ -89,7 +90,11 @@ try{
        res.json({ massage: "Wrong Password" })
       return;
     }
-    res.json({massage: "user login successefully"})
+
+    const token = generateToken({email: user.email, role: user.role})
+
+
+    res.json({massage: "user login successefully", token})
     
   } catch(err){
     return res.json({massase: err})
